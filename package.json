@@ -1,0 +1,27 @@
+{
+  "name": "keplr-wallet-tests",
+  "version": "1.0.0",
+  "description": "Playwright tests for Keplr wallet integration",
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:basic": "playwright test basic-test.spec.ts",
+    "test:keplr": "playwright test keplr-browser.spec.ts",
+    "show-report": "playwright show-report",
+    "install:browsers": "playwright install chromium",
+    "check-dirs": "node -e \"const fs=require('fs');['tests','screenshots','extensions'].forEach(dir=>!fs.existsSync(dir)&&fs.mkdirSync(dir))\""
+  },
+  "keywords": [
+    "keplr",
+    "wallet",
+    "testing",
+    "playwright"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.19",
+    "typescript": "^5.4.5"
+  }
+}

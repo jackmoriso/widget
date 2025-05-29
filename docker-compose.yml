@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  keplr-test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # 挂载整个项目目录到容器中（不复制代码）
+      - .:/app
+      # 确保扩展目录被正确挂载
+      - ./extensions:/app/extensions
+      # 保存测试报告和日志
+      - ./report:/app/report
+      - ./logs:/app/logs
+      - ./screenshots:/app/screenshots
+    environment:
+      - TASKID=${TASKID:-default}
+      - TEST_URL=${TEST_URL:-https://initia-widget-playground.vercel.app/}
+      - NODE_PATH=/app/node_modules
+      # 额外的环境变量（如果需要）
+      # - ADDITIONAL_ENV=value
+    # 默认运行simple-keplr.test.ts，可以通过命令行参数覆盖
+    command: ${TEST_PATH:-tests/simple-keplr.test.ts}
